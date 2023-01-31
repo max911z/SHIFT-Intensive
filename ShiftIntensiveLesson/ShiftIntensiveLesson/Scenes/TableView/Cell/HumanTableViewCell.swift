@@ -15,15 +15,8 @@ class HumanTableViewCell: UITableViewCell {
 	@IBOutlet weak var avatarImageView: UIImageView!
 
 	override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+		super.awakeFromNib()
 		selectionStyle = .none
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 	func configure(with model: Human) {

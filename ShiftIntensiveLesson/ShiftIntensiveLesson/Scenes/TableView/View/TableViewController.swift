@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TableViewController.swift
 //  ShiftIntensiveLesson
 //
 //  Created by Abrosimov Ilya on 30.01.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
 	@IBOutlet weak var tableView: UITableView!
 
@@ -47,5 +47,5 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
 		self.present(alert, animated: true)
 	}
-}
 
+}
