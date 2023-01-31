@@ -29,6 +29,9 @@
                     <buttonConfiguration key="configuration" style="filled" title="Tap Me">
                         <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="56"/>
                     </buttonConfiguration>
+                    <connections>
+                        <action selector="loadImage:" destination="-1" eventType="touchUpInside" id="f4M-SF-x1O"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

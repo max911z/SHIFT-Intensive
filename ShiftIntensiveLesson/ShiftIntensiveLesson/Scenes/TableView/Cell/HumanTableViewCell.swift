@@ -19,13 +19,21 @@ class HumanTableViewCell: UITableViewCell {
 		selectionStyle = .none
     }
 
-	func configure(with model: Human) {
-		nameLabel.text = model.name
-		heightLabel.text = "Рост: \(model.height) см"
-		weightLabel.text = "Вес: \(model.weight) кг"
-		let image = UIImage(named: model.name)
-		avatarImageView.image = image
-		avatarImageView.layer.cornerRadius = 16
+//	func configure(with model: Human) {
+//		nameLabel.text = model.name
+//		heightLabel.text = "Рост: \(model.height) см"
+//		weightLabel.text = "Вес: \(model.weight) кг"
+//		let image = UIImage(named: model.name)
+//		avatarImageView.image = image
+//		avatarImageView.layer.cornerRadius = 16
+//	}
+
+	func configure(with model: Article) {
+		nameLabel.text = model.title
+		heightLabel.text = model.body
+//		weightLabel.text = "Вес: \(model.weight) кг"
+//		let image = UIImage(named: model.name)
+//		avatarImageView.image = image
+//		avatarImageView.layer.cornerRadius = 16
 	}
-    
 }

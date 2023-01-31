@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class MainViewController: UIViewController {
 
@@ -20,7 +21,8 @@ class MainViewController: UIViewController {
 	}
 
 	@IBAction func goToGetRequest(_ sender: Any) {
-		testGetRequest()
+//		testGetRequest()
+//		testGetRequestWithAlamofire()
 	}
 
 	@IBAction func goToPostRequest(_ sender: Any) {
@@ -32,10 +34,78 @@ class MainViewController: UIViewController {
     }
 
 	func testGetRequest() {
-		
+		guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts") else { return }
+
+		let session = URLSession.shared
+
+		let task = session.dataTask(with: url) { data, response, error in
+			print(response)
+			print(data)
+
+			guard let data = data else { return }
+
+			do {
+				let json = try JSONSerialization.jsonObject(with: data)
+				print(json)
+			} catch {
+				print(error)
+			}
+		}
+
+		task.resume()
 	}
 
-	func testPostRequest() {
+//	struct Article: Decodable {
+//		let userId: Int
+//		let id: Int
+//		let title: String
+//		let body: String
+//	}
 
+//	func testGetRequestWithAlamofire() {
+//		guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts") else { return }
+//
+//		AF.request(url, method: .get)
+//			.validate()
+//			.responseData { response in
+//				switch response.result {
+//				case .success(let data):
+//					guard let decodedData = try? JSONDecoder().decode([Article].self, from: data) else { return }
+//					print(decodedData)
+//				case .failure(let error):
+//					print(error)
+//				}
+//			}
+//	}
+
+	func testPostRequest() {
+		guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts") else { return }
+
+		let dataToPost = ["Organization": "CFT", "Course": "Shift Intensive"]
+
+		var urlRequest = URLRequest(url: url)
+
+		urlRequest.httpMethod = "POST"
+		urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+		guard let requestBody = try? JSONSerialization.data(withJSONObject: dataToPost) else { return }
+
+		urlRequest.httpBody = requestBody
+
+		let session = URLSession.shared
+
+		let task = session.dataTask(with: urlRequest) { data, response, error in
+			print(response)
+
+			guard let data = data else { return }
+
+			do {
+				let json = try JSONSerialization.jsonObject(with: data)
+				print(json)
+			} catch {
+				print(error)
+			}
+		}
+		task.resume()
 	}
 }
